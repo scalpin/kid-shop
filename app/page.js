@@ -1,5 +1,15 @@
+//app/page.js
 import Image from "next/image";
 
+export default function Page() {
+  return (
+    <main className="p-6">
+      <h1 className="text-3xl font-bold text-red-600">Привет, Tailwind</h1>
+    </main>
+  )
+}
+
+/*
 export default function Home() {
   return (
     <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
@@ -101,3 +111,4 @@ export default function Home() {
     </div>
   );
 }
+*/
