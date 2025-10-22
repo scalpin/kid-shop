@@ -1,10 +1,28 @@
 //app/page.js
 import Image from "next/image";
+import { supabase } from '@/lib/supabase'
+export const revalidate = 60
 
-export default function Page() {
+export default async function Home() {
+  const { data: products, error } = await supabase
+    .from('products')
+    .select('name, slug, price, images')
+    .order('created_at', { ascending: false })
+
+  if (error) return <pre className="p-6 text-red-600">{error.message}</pre>
+
   return (
-    <main className="p-6">
-      <h1 className="text-3xl font-bold text-red-600">Привет1, Tailwind</h1>
+    <main className="max-w-5xl mx-auto p-6">
+      <h1 className="text-2xl font-semibold mb-4">Каталог</h1>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {(products ?? []).map(p => (
+          <a key={p.slug} href={`/products/${p.slug}`} className="border rounded-lg p-3 hover:shadow">
+            <img src={p.images?.[0] || '/placeholder.png'} alt={p.name} className="w-full h-40 object-cover rounded" />
+            <div className="mt-2 text-sm">{p.name}</div>
+            {p.price != null && <div className="text-gray-600 text-sm">{Number(p.price)} ₽</div>}
+          </a>
+        ))}
+      </div>
     </main>
   )
 }
