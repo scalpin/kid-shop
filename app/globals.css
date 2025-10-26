@@ -3,10 +3,13 @@
 @tailwind components;
 @tailwind utilities;
 
-/* дальше твои переменные и стили, если нужны */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --whileBack: rgb(255, 255, 255);
+  --foreground: rgb(23, 23, 23);
+  --blueBack: rgb(118, 169, 252);
+  --beigeBack: rgb(231, 219, 193);
+  --accent: rgb(118, 169, 252);
+  --mainMenuItem: #f6f6f6;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -17,8 +20,225 @@
 }
 
 body {
+  font-family: var(--font-sans), system-ui, -apple-system, Segoe UI, Arial, sans-serif;
   background: var(--background);
   color: var(--foreground);
   /* если хочешь юзать шрифты из layout — убери Arial, т.к. ты уже прокинул переменные шрифта через className */
   /* font-family: Arial, Helvetica, sans-serif; */
+}
+
+
+#product-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+
+/* === шапка === */
+
+.site-header {
+  background: var(--whileBack, #fff);
+  border-bottom: 2px solid var(--accent);
+}
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 20px;                           
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header-logo { display: inline-flex; align-items: center; }
+.logo-img    { height: 55px; width: auto; display: block; } 
+
+/* контакты справа */
+.header-contacts {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;  /* правый край блока прижат вправо */
+  gap: 4px;
+  width: max-content;     /* ширина = ширине самой длинной строки */
+}
+
+.contact-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  width: 100%;            /* обе строки одинаковой ширины => левый край совпадает */
+}
+
+.contact-icon {
+  flex: 0 0 20px;         /* фиксированная колонка под иконку */
+  width: 20px;
+  height: 20px;
+  color: #6b7280;
+  transition: color .15s ease;
+}
+
+.contact-row:hover .contact-icon { color: #374151; }
+
+.contact-phone {
+  font-size: 15px;
+  color: var(--foreground);
+  line-height: 1.2;
+}
+
+.contact-phone__prefix { font-weight: 400; }
+.contact-phone__main   { font-weight: 600; }
+
+.contact-email {
+  font-size: 15px;
+  color: var(--accent);
+}
+
+.contact-row:hover .contact-email { text-decoration: none; }
+
+/*ширина контейнера хедера */
+@media (min-width: 880px) {
+  .header-inner { max-width: 1160px; }
+}
+
+
+/* === Main menu === */
+
+/* перекрываем твой старый #main-menu */
+#main-menu { 
+  background: var(--mainMenuItem);
+  margin-bottom: 20px; 
+  --menu-h: 62px;
+}
+
+.main-menu__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.main-menu__list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.main-menu__link {
+  display: flex;             /* растягиваем и центрируем контент */
+  height: 100%;
+  align-items: center;       /* вертикально по центру */
+  justify-content: center;   /* горизонтально по центру */
+  padding: 0 12px;           /* боковые отступы, без вертикальных */
+  text-decoration: none;
+  color: var(--foreground);
+  font-size: 16px;
+  border-left: 1px solid transparent;
+  border-right: 1px solid transparent;
+  box-sizing: border-box;    /* чтобы бордеры не меняли высоту */
+  transition: border-color .15s ease, color .15s ease;
+}
+
+/* чёрные боковые линии при наведении */
+.main-menu__link:hover,
+.main-menu__link:focus-visible {
+  /*border-left-color: var(--foreground);
+  border-right-color: var(--foreground);*/
+  background-color: white;
+  transition: border-color .35s ease, color .35s ease;
+}
+
+.main-menu__item {
+  min-height: var(--menu-h); /* высота ячейки */
+}
+
+@media (min-width: 1280px) {
+  .main-menu__inner { max-width: 1240px; }
+}
+
+
+
+/* правая область в хедере */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;               /* расстояние между поиском, избранным и контактами */
+}
+
+/* поиск */
+.search {
+  position: relative;
+  width: 320px;            /* подгони при желании */
+  max-width: 40vw;
+}
+.search__input {
+  width: 100%;
+  height: 38px;
+  padding: 0 40px 0 14px;  /* место под иконку справа */
+  border-radius: 9999px;   /* пилюля */
+  background: #f6f6f6;
+  color: var(--foreground);
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color .15s ease, background-color .15s ease, box-shadow .15s ease;
+}
+.search__input::placeholder { color: #9ca3af; } /* gray-400 */
+.search__input:focus {
+  background: #fff;
+  border-color: #cbd5e1;   /* gray-300 */
+  box-shadow: 0 0 0 2px var(--accent); /* легкий подсвет по твоему accent */
+}
+.search__btn {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+.search__icon {
+  width: 20px;
+  height: 20px;
+  color: var(--foreground);          /* gray-500 */
+}
+
+/* избранное с бейджем */
+.fav {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  text-decoration: none;
+}
+.fav__icon {
+  width: 20px;
+  height: 20px;
+  color: var(--accent);
+}
+.fav__badge {
+  position: absolute;
+  top: -2px;
+  right: -5px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 10px;
+  line-height: 1;
+  padding: 2px 5px;
+  border-radius: 9999px;
+  border: 2px solid #fff;  /* чтобы бейдж отделялся от фона */
+}
+
+/* адаптив: ужимаем поиск на узких экранах */
+@media (max-width: 920px) {
+  .search { width: 220px; }
+}
+@media (max-width: 640px) {
+  .search { display: none; }           /* при желании можно спрятать поиск на очень узких */
+  .header-right { gap: 12px; }
 }

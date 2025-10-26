@@ -1,6 +1,21 @@
 //app/layout.js
 import { Geist, Geist_Mono } from "next/font/google";
+import { Manrope, Comfortaa } from 'next/font/google'
 import "./globals.css";
+import Header from './components/Header'
+import MainMenu from './components/MainMenu'
+
+const manrope = Manrope({
+  subsets: ['latin', 'cyrillic'],
+  weight: ['400','500','700'],
+  variable: '--font-sans'
+})
+
+const comfortaa = Comfortaa({
+  subsets: ['latin', 'cyrillic'],
+  weight: ['500','700'],
+  variable: '--font-heading'
+})
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,9 +35,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+
+      <body className={`${manrope.variable} ${comfortaa.variable} antialiased`}>
+        <Header />
+        <MainMenu />
         {children}
       </body>
     </html>

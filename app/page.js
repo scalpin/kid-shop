@@ -1,5 +1,6 @@
 //app/page.js
 import Image from "next/image";
+import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 export const revalidate = 60
 
@@ -12,12 +13,12 @@ export default async function Home() {
   if (error) return <pre className="p-6 text-red-600">{error.message}</pre>
 
   return (
-    <main className="max-w-5xl mx-auto p-6">
+    <main className="max-w-6xl mx-auto p-6">
       <h1 className="text-2xl font-semibold mb-4">Каталог</h1>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {(products ?? []).map(p => (
-          <a key={p.slug} href={`/products/${p.slug}`} className="border rounded-lg p-3 hover:shadow">
-            <img src={p.images?.[0] || '/placeholder.png'} alt={p.name} className="w-full h-40 object-cover rounded" />
+          <a key={p.slug} href={`/products/${p.slug}`} className="border rounded-lg p-3 hover:shadow" id="product-card">
+            <img src={p.images?.[0] || '/placeholder.png'} alt={p.name} className="w-full h-40 object-cover rounded"/>
             <div className="mt-2 text-sm">{p.name}</div>
             {p.price != null && <div className="text-gray-600 text-sm">{Number(p.price)} ₽</div>}
           </a>
