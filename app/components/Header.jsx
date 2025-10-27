@@ -31,14 +31,17 @@ export default function Header() {
     <header className="site-header">
       <div className="header-inner">
         <Link href="/" className="header-logo" aria-label="На главную">
-          <Image
-            src="/logo_blue.png"
-            alt="Счастливчик"
-            width={290}
-            height={64}
-            priority
-            className="logo-img"
-          />
+          <div className="logo-wrap">
+            <Image
+              src="/logo_blue.png"
+              alt="Счастливчик"
+              width={290}
+              height={64}
+              priority
+              className="logo-img"
+            />
+            <div className="logo-subtitle">Производство ясельного трикотажа</div>
+          </div>
         </Link>
 
         {/* правая часть: поиск + избранное + контакты */}
@@ -67,7 +70,7 @@ export default function Header() {
           </a>
 
           {/* контакты */}
-          {/*
+          
           <div className="header-contacts">
             <a href="tel:+7973674519" className="contact-row">
               <PhoneIcon className="contact-icon" />
@@ -81,7 +84,7 @@ export default function Header() {
               <span className="contact-email">abroskin.06.77@mail.ru</span>
             </a>
           </div>
-          */}
+          
         </div>
       </div>
     </header>

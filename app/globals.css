@@ -7,7 +7,8 @@
   --whileBack: rgb(255, 255, 255);
   --foreground: rgb(23, 23, 23);
   --blueBack: rgb(118, 169, 252);
-  --beigeBack: rgb(231, 219, 193);
+  --beigeBack: rgb(247, 247, 245);
+  --beigeBack2: rgb(231, 219, 193);
   --accent: rgb(118, 169, 252);
   --mainMenuItem: #f6f6f6;
 }
@@ -43,13 +44,26 @@ body {
 .header-inner {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px 20px;                           
+  padding: 13px 20px;                           
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.header-logo { display: inline-flex; align-items: center; }
-.logo-img    { height: 55px; width: auto; display: block; } 
+
+.header-logo { text-decoration: none; color: inherit; }
+.logo-wrap { display: flex; flex-direction: column; align-items: flex-start; }
+.logo-img  { height: 55px; width: auto; display: block; }
+
+.logo-subtitle {
+  margin-top: 0px;
+  margin-bottom: 7px;
+  padding-left: 4px;
+  font-size: 12.5px;         /* аккуратный кегль */
+  line-height: 1.25;
+  color: var(--foreground);            /* мягко-серый; хочешь темнее — var(--foreground) с прозрачностью */
+  /* color: color-mix(in srgb, var(--foreground) 60%, white);  <- если хочешь через переменную */
+  white-space: nowrap;       /* чтобы не переносилось */
+}
 
 /* контакты справа */
 .header-contacts {
@@ -117,7 +131,7 @@ body {
 
 .main-menu__list {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   list-style: none;
   margin: 0;
   padding: 0;
@@ -132,6 +146,7 @@ body {
   text-decoration: none;
   color: var(--foreground);
   font-size: 16px;
+  font-weight: bolder;
   border-left: 1px solid transparent;
   border-right: 1px solid transparent;
   box-sizing: border-box;    /* чтобы бордеры не меняли высоту */
@@ -241,4 +256,160 @@ body {
 @media (max-width: 640px) {
   .search { display: none; }           /* при желании можно спрятать поиск на очень узких */
   .header-right { gap: 12px; }
+}
+
+
+
+/* ------- каталог --------- */
+.catalog-page { 
+  max-width: 1200px; 
+  margin: 0 auto; 
+  padding: 24px 24px; 
+}
+
+.catalog-title { 
+  font-size: 24px; 
+  font-weight: 600; 
+  margin: 0 0 16px 0; 
+}
+
+.catalog-grid { 
+  display: grid; 
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 16px; 
+}
+
+@media (min-width: 768px) { 
+  .catalog-grid { 
+    grid-template-columns: repeat(4, 1fr); 
+  } 
+}
+
+.product-card { 
+  display: block; 
+  border: 1px solid #e5e7eb; 
+  border-radius: 8px; padding: 12px; 
+  text-decoration: none; 
+}
+
+.product-card__img { 
+  width: 100%; 
+  height: 160px; 
+  object-fit: cover; 
+  border-radius: 6px; 
+}
+
+.product-card__name { 
+  margin-top: 8px; 
+  font-size: 14px; 
+  color: var(--foreground); 
+}
+
+.product-card__price { 
+  color: #6b7280; 
+  font-size: 14px; 
+}
+
+
+/* ----------- Главная ----------- */
+.hero { 
+  /* background: var(--beigeBack); */
+}
+.hero__inner { 
+  max-width: 1200px; 
+  margin: 0 auto; 
+  padding: 28px 24px; 
+  display: grid; 
+  grid-template-columns: 1fr; 
+  gap: 20px; 
+}
+
+@media (min-width: 900px) { .hero__inner { grid-template-columns: 1.1fr .9fr; align-items: center; } }
+
+.hero__title { 
+  font-family: var(--font-heading, inherit); 
+  font-size: 34px; 
+  font-weight: 700; 
+  margin: 0 0 8px 0; 
+}
+
+.hero__subtitle { 
+  font-size: 16px; 
+  color: #4b5563; 
+  margin: 0 0 16px 0; 
+}
+
+.hero__actions { 
+  display: flex; 
+  gap: 12px; 
+}
+
+.btn { 
+  display: inline-block; 
+  padding: 10px 16px; 
+  border-radius: 10px; 
+  text-decoration: none; 
+  font-weight: 600; 
+}
+
+.btn--primary { 
+  background: var(--accent); 
+  color: #fff; 
+}
+
+.btn--ghost { 
+  border: 1px solid #e5e7eb; 
+  color: var(--foreground); 
+  background: #fff; 
+}
+
+.hero__img { width: 100%; 
+  height: 280px; 
+  object-fit: cover; 
+  border-radius: 12px; 
+}
+
+/* три преимущества */
+.usp__inner { 
+  max-width: 1200px; 
+  margin: 0 auto; 
+  padding: 20px 24px; 
+  display: grid; 
+  grid-template-columns: 1fr; 
+  gap: 12px; 
+}
+
+@media (min-width: 900px) { .usp__inner { grid-template-columns: repeat(3, 1fr); } }
+
+.usp__item { 
+  background: #fff; 
+  border: 1px solid #eee; 
+  border-radius: 12px; 
+  padding: 16px; 
+}
+
+/* карточки-ссылки */
+.home-links__inner { 
+  max-width: 1200px; 
+  margin: 0 auto; 
+  padding: 20px 24px; 
+  display: grid; 
+  grid-template-columns: 1fr; 
+  gap: 12px; 
+}
+
+@media (min-width: 800px) { .home-links__inner { grid-template-columns: repeat(3, 1fr); } }
+
+.home-links__card { 
+  display: block; 
+  border: 1px solid #eee; 
+  border-radius: 12px; 
+  padding: 16px; 
+  background: #fff; 
+  text-decoration: none; 
+  color: var(--foreground); 
+}
+
+.home-links__card:hover { 
+  box-shadow: 0 4px 10px rgba(0,0,0,.06); 
 }

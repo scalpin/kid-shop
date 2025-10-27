@@ -7,15 +7,14 @@ export default function MainMenu() {
       <div className="main-menu__inner">
         <ul className="main-menu__list">
           {[
-            { href: '/catalog',      label: 'Главная' },
-            { href: '/about',        label: 'О компании' },
-            { href: '/certificates', label: 'Сертификаты' },
-            { href: '/contacts',     label: 'Контакты' },
+            { href: '/',            label: 'Главная' },
+            { href: '/catalog',     label: 'Каталог' },
+            { href: '/about',       label: 'О компании' },
+            { href: '/certificates',label: 'Сертификаты' },
+            { href: '/contacts',    label: 'Контакты' },
           ].map(item => (
             <li key={item.label} className="main-menu__item">
-              <Link href={item.href} className="main-menu__link">
-                {item.label}
-              </Link>
+              <Link href={item.href} className="main-menu__link">{item.label}</Link>
             </li>
           ))}
         </ul>
