@@ -33,7 +33,7 @@ export default function Header() {
         <Link href="/" className="header-logo" aria-label="На главную">
           <div className="logo-wrap">
             <Image
-              src="/logo_blue.png"
+              src="/logo_blue(cuted).png"
               alt="Счастливчик"
               width={290}
               height={64}
