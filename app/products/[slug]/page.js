@@ -1,40 +1,116 @@
-// app\products\[slug]\page.js
 import { notFound } from "next/navigation"
-// если настроен alias "@", оставляй так, если нет — замени на "../../lib/supabase"
+import Link from "next/link"
 import { supabase } from "@/lib/supabase"
-import Link from 'next/link'
-import Image from 'next/image'
 
 export const revalidate = 60
 
 export async function generateStaticParams() {
   const { data } = await supabase.from("products").select("slug")
-  return (data ?? []).map(p => ({ slug: p.slug }))
+  return (data ?? []).map((p) => ({ slug: p.slug }))
 }
 
 export default async function ProductPage({ params }) {
-  const { data: product } = await supabase
+  const { data: product, error } = await supabase
     .from("products")
     .select("*")
     .eq("slug", params.slug)
     .single()
 
-  if (!product) return notFound()
+  if (error || !product) return notFound()
+
+  // подготовим поля для вывода
+  const fmt = new Intl.NumberFormat("ru-RU")
+  const priceStr =
+    product.price != null ? `${fmt.format(Number(product.price))} ₽` : "—"
+
+  const sku = product.sku || "—"
+
+  const sizes =
+    Array.isArray(product.sizes)
+      ? product.sizes.join(", ")
+      : product.sizes || "—"
+
+  const material = product.material || "—"
+
+  const images = Array.isArray(product.images) ? product.images : []
 
   return (
-    <main className="max-w-4xl mx-auto p-6 grid md:grid-cols-2 gap-6">
-      <img
-        src={product.images?.[0] || "/placeholder.png"}
-        alt={product.name}
-        className="w-full h-80 object-cover rounded"
-      />
-      <div>
-        <h1 className="text-2xl font-semibold">{product.name}</h1>
-        {product.price != null && <div className="mt-2 text-lg">{Number(product.price)} ₽</div>}
-        <p className="mt-4 whitespace-pre-wrap text-sm text-gray-800">{product.description || ""}</p>
-        <div className="mt-6 p-4 bg-gray-50 rounded">
-          Заказ по телефону: <a href="tel:+79990000000" className="underline">+7 999 000 00 00</a>
+    <main className="product">
+      <div className="product__inner">
+
+        {/* назад в каталог */}
+        <div className="product__topbar">
+          <Link href="/catalog" className="product__back">← Вернуться в каталог</Link>
         </div>
+
+        <section className="product__grid">
+          {/* галерея */}
+          <div className="product__gallery">
+            <img
+              src={images[0] || "/placeholder.png"}
+              alt={product.name}
+              className="product__image"
+            />
+            {images.length > 1 && (
+              <div className="product__thumbs">
+                {images.slice(0, 5).map((src, i) => (
+                  <a key={i} href={src} target="_blank" rel="noreferrer" className="product__thumb-link">
+                    <img src={src} alt="" className="product__thumb" />
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* информация */}
+          <div className="product__info">
+            <h1 className="product__title">{product.name}</h1>
+
+            <dl className="product__meta">
+              <div className="product__meta-row">
+                <dt>Артикул</dt>
+                <dd>{sku}</dd>
+              </div>
+              <div className="product__meta-row">
+                <dt>Размеры</dt>
+                <dd>{sizes}</dd>
+              </div>
+              <div className="product__meta-row">
+                <dt>Материал</dt>
+                <dd>{material}</dd>
+              </div>
+              <div className="product__meta-row">
+                <dt>Цена</dt>
+                <dd className="product__price">{priceStr}</dd>
+              </div>
+            </dl>
+
+            {product.description && (
+              <div className="product__desc">
+                <h2>Описание</h2>
+                <p>{product.description}</p>
+              </div>
+            )}
+
+            <div className="product__cta">
+              Заказ по телефону:
+              {" "}
+              <a href="tel:+79273674519" className="product__cta-link">+7 927 367-45-19</a><br></br>
+              <a href="tel:+79272876926" className="product__cta-link2">+7 927 287-69-26</a>
+            </div>
+
+            {Array.isArray(product.certificates) && product.certificates.length > 0 && (
+              <div className="product__certs">
+                <h3>Сертификаты</h3>
+                <ul>
+                  {product.certificates.slice(0, 5).map((url, idx) => (
+                    <li key={idx}><a href={url} target="_blank" rel="noreferrer">Скачать {idx + 1}</a></li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        </section>
       </div>
     </main>
   )

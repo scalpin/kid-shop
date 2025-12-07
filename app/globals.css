@@ -35,7 +35,7 @@ body {
 }
 
 
-/* === шапка === */
+/* ========= шапка ======== */
 
 .site-header {
   background: var(--whileBack, #fff);
@@ -44,7 +44,7 @@ body {
 .header-inner {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 17px 20px;                           
+  padding: 28px 20px;                           
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -110,13 +110,11 @@ body {
 
 /*ширина контейнера хедера */
 @media (min-width: 880px) {
-  .header-inner { max-width: 1160px; }
+  .header-inner { max-width: 1200px; }
 }
 
 
 /* === Main menu === */
-
-/* перекрываем твой старый #main-menu */
 #main-menu { 
   background: var(--mainMenuItem);
   margin-bottom: 20px; 
@@ -167,7 +165,7 @@ body {
 }
 
 @media (min-width: 1280px) {
-  .main-menu__inner { max-width: 1240px; }
+  .main-menu__inner { max-width: 1200px; }
 }
 
 
@@ -258,6 +256,9 @@ body {
   .header-right { gap: 12px; }
 }
 
+.sized_box {
+  height: 110px; /* задаёт отступ между блоками */
+}
 
 
 /* ------- каталог --------- */
@@ -294,7 +295,7 @@ body {
 
 .product-card__img { 
   width: 100%; 
-  height: 160px; 
+  height: 335px; 
   object-fit: cover; 
   border-radius: 6px; 
 }
@@ -312,9 +313,6 @@ body {
 
 
 /* ----------- Главная ----------- */
-.hero { 
-  /* background: var(--beigeBack); */
-}
 .hero__inner { 
   max-width: 1200px; 
   margin: 0 auto; 
@@ -514,4 +512,459 @@ body {
     order: initial;
   }
   .about-section__image img { height: 220px; }
+}
+
+
+/* =========== Контакты =============== */
+.contacts { background: var(--whileBack, #fff); color: var(--foreground); }
+.contacts__inner { max-width: 1200px; margin: 0 auto; padding: 24px 24px; }
+@media (min-width: 1280px) { .contacts__inner { max-width: 1200px; } }
+
+.contacts__h1 { margin: 0 0 16px 0; font-size: 24px; font-weight: 600; }
+
+.contacts__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+@media (min-width: 900px) {
+  .contacts__grid { grid-template-columns: 1fr 1fr; }
+}
+
+.contacts__card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.contacts__title { margin: 0 0 12px 0; font-size: 18px; font-weight: 600; }
+
+.contacts__row { display: grid; grid-template-columns: 100px 1fr; align-items: center; gap: 8px; margin-bottom: 8px; }
+.contacts__label { font-size: 13px; color: #6b7280; } /* gray-500 */
+
+.contacts__phone {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--foreground);
+  text-decoration: none;
+}
+.contacts__email {
+  font-size: 16px;
+  color: var(--accent);
+  text-decoration: none;
+}
+.contacts__email:hover { text-decoration: none; }
+
+.contacts__note { margin: 8px 0 12px; font-size: 13px; color: #6b7280; }
+
+.contacts__actions { display: flex; gap: 10px; }
+
+/* простые кнопки, если их ещё нет */
+.btn { display: inline-block; padding: 10px 14px; border-radius: 10px; font-weight: 600; text-decoration: none; }
+.btn--primary { background: var(--accent); color: #fff; }
+.btn--ghost { border: 1px solid #e5e7eb; background: #fff; color: var(--foreground); }
+
+/* список доставки */
+.contacts__list { margin: 0 0 12px 0; padding-left: 16px; }
+.contacts__list li { margin: 6px 0; }
+
+/* карта-заглушка */
+.contacts__map { margin-top: 8px; }
+.contacts__map-placeholder {
+  height: 220px;
+  border: 1px dashed #d1d5db;   /* gray-300 */
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; color: #6b7280;
+}
+
+/* мобильные правки */
+@media (max-width: 520px) {
+  .contacts__row { grid-template-columns: 1fr; gap: 4px; }
+  .contacts__phone { font-size: 18px; }
+}
+
+
+
+/* ======== Карта ========== */
+
+.contacts__map {
+  margin-top: 8px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+}
+.contacts__map-iframe {
+  display: block;
+  width: 100%;
+  height: 300px;          /* подгони, если нужно выше/ниже */
+  border: 0;
+}
+.contacts__map-meta {
+  display: flex;
+  justify-content: flex-end;
+  padding: 6px 10px;
+  font-size: 12px;
+  border-top: 1px solid #f0f0f0;
+}
+.contacts__map-meta a {
+  color: var(--accent);
+  text-decoration: underline;
+}
+.contacts__map-meta a:hover { text-decoration: none; }
+
+@media (max-width: 520px) {
+  .contacts__map-iframe { height: 240px; }
+}
+
+
+/* ============= Product page ============= */
+.product { background: var(--whileBack, #fff); color: var(--foreground); }
+.product__inner { max-width: 1200px; margin: 0 auto; padding: 24px 24px; }
+@media (min-width: 1280px) { .product__inner { max-width: 1200px; } }
+
+.product__topbar { margin-bottom: 12px; }
+.product__back {
+  font-size: 14px;
+  color: #6b7280;
+  text-decoration: none;
+}
+.product__back:hover { color: #111; }
+
+.product__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+@media (min-width: 900px) {
+  .product__grid { grid-template-columns: 1.05fr .95fr; }
+}
+
+.product__gallery { }
+.product__image {
+  width: 90%;
+  height: 700px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  display: block;
+}
+.product__thumbs {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  margin-top: 10px;
+}
+.product__thumb-link { display: block; }
+.product__thumb {
+  width: 100%;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  display: block;
+}
+
+.product__info { }
+.product__title {
+  margin: 0 0 8px 0;
+  font-size: 24px;
+  font-weight: 700;
+}
+.product__meta {
+  margin: 12px 0 16px 0;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 12px;
+  background: #fff;
+}
+.product__meta-row {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 12px;
+  padding: 6px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+.product__meta-row:last-child { border-bottom: 0; }
+.product__meta dt {
+  font-size: 13px;
+  color: #6b7280;
+}
+.product__meta dd {
+  margin: 0;
+  font-size: 15px;
+}
+.product__price {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.product__desc { margin-top: 12px; }
+.product__desc h2 {
+  margin: 0 0 6px 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+.product__desc p { margin: 0; line-height: 1.6; color: #374151; }
+
+.product__cta {
+  margin-top: 16px;
+  padding: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #f9fafb;
+  font-size: 15px;
+}
+.product__cta-link {
+  color: var(--accent);
+  text-decoration: none;
+}
+.product__cta-link2 {
+  color: var(--accent);
+  text-decoration: none;
+  margin-left: 142px;
+}
+.product__cta-link:hover { text-decoration: none; }
+
+.product__certs { margin-top: 14px; }
+.product__certs h3 { margin: 0 0 6px 0; font-size: 15px; font-weight: 600; }
+.product__certs ul { margin: 0; padding-left: 16px; }
+.product__certs li { margin: 4px 0; }
+.product__certs a { color: var(--accent); text-decoration: underline; }
+.product__certs a:hover { text-decoration: none; }
+
+/* мобилка */
+@media (max-width: 520px) {
+  .product__image { height: 300px; }
+  .product__meta-row { grid-template-columns: 100px 1fr; }
+}
+
+
+
+
+/* ======= Footer ======= */
+.site-footer {
+  background: var(--mainMenuItem);
+  color: var(--foreground);
+  margin-top: 120px;
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 28px 24px;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 20px;
+}
+@media (min-width: 1200px) { .footer-inner { max-width: 1200px; } }
+@media (max-width: 900px)  { .footer-inner { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px)  { .footer-inner { grid-template-columns: 1fr; } }
+
+.footer-col { min-width: 0; }
+
+.footer-logo { display: inline-flex; align-items: center; text-decoration: none; color: inherit; }
+.footer-logo__img { height: 34px; width: auto; display: block; }
+
+.footer-tagline { font-size: 13px; color: #6b7280; }
+
+.footer-contacts { display: flex; flex-direction: column; gap: 4px; }
+.footer-phone { font-weight: 500; color: var(--foreground); text-decoration: none; }
+.footer-phone:hover { text-decoration: underline; }
+.footer-email { color: var(--accent); text-decoration: none; }
+.footer-email:hover { text-decoration: underline; }
+
+.footer-title {
+  margin: 4px 0 10px 0;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .02em;
+}
+
+.footer-links, .footer-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+.footer-links a {
+  color: var(--foreground);
+  text-decoration: none;
+  font-size: 14px;
+}
+.footer-links a:hover { text-decoration: underline; }
+
+.footer-bottom {
+  border-top: 1px solid #e5e7eb;
+  background: #f9fafb;
+}
+.footer-bottom__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#btn_load {
+  padding: 8px 12px;
+  font-size: 14px;
+  background: var(--mainMenuItem);
+  color: #000000;
+  border: 1px solid #cccccc;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+
+.footer-copy { margin-top: 84px; }
+@media (min-width: 1280px) { .footer-bottom__inner { max-width: 1240px; } }
+@media (max-width: 560px)  { .footer-bottom__inner { flex-direction: column; gap: 6px; } }
+
+
+
+/* ============= Price list ============= */
+.price { background: var(--whileBack, #fff); color: var(--foreground); }
+.price__inner { max-width: 1200px; margin: 0 auto; padding: 24px 24px; }
+@media (min-width: 1280px) { .price__inner { max-width: 1240px; } }
+
+.price__h1 { margin: 0 0 10px; font-size: 24px; font-weight: 600; }
+.price__note { margin: 0 0 14px; font-size: 14px; color: #6b7280; }
+.price__phone { color: var(--accent); text-decoration: underline; }
+.price__phone:hover { text-decoration: none; }
+
+.price__tablewrap { border: 1px solid #e5e7eb; border-radius: 10px; overflow: hidden; background: #fff; }
+
+.price-table { width: 100%; border-collapse: collapse; }
+.price-table thead th {
+  text-align: left;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  color: #6b7280;
+  padding: 10px 12px;
+  background: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+}
+.price-table tbody td {
+  padding: 12px;
+  font-size: 14px;
+  border-bottom: 1px solid #f3f4f6;
+}
+.price-table tbody tr:last-child td { border-bottom: 0; }
+.price-table tbody tr:hover td { background: #fafafa; }
+
+.col-price, .cell-price { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.cell-name { font-weight: 500; }
+.cell-sku { color: var(--foreground); font-weight: 500; white-space: nowrap; }
+.cell-sizes, .cell-material { color: #374151; }
+
+/* компактнее на мобильном */
+@media (max-width: 640px) {
+  .price__inner { padding: 16px; }
+  .price-table thead th { font-size: 12px; padding: 8px 10px; }
+  .price-table tbody td { padding: 10px; font-size: 13px; }
+}
+
+/* сообщение об ошибке */
+.price__error {
+  color: #b91c1c;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  padding: 12px;
+  border-radius: 8px;
+}
+.price__footer-note { margin-top: 10px; font-size: 12px; color: #9ca3af; }
+
+
+
+/* ========= экспорт прайса ============== */
+.price__export {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.export {
+  position: relative;
+  display: inline-grid;
+  grid-auto-flow: column;
+  border: 1px solid #111;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.export__btn,
+.export__toggle {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  padding: 10px 14px;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--foreground);
+}
+
+.export__btn { border-right: 1px solid #111; }
+.export__toggle { width: 40px; padding: 0; position: relative; }
+
+/* маленькая стрелка */
+.export__toggle::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 0; height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 7px solid #111;
+}
+
+.export:hover .export__btn,
+.export:hover .export__toggle { background: #f5f5f5; }
+
+/* меню форматов */
+.export__menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 6px);
+  min-width: 160px;
+  background: #fff;
+  border: 1px solid #111;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.08);
+  padding: 6px;
+  list-style: none;
+  margin: 0;
+  display: none;
+  z-index: 20;
+}
+
+/* показываем меню по hover/focus контейнера */
+.export:hover .export__menu,
+.export:focus-within .export__menu { display: block; }
+
+.export__menu a {
+  display: block;
+  text-decoration: none;
+  color: var(--foreground);
+  padding: 10px 10px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+.export__menu a:hover { background: #f5f5f5; }
+
+/* мобильный твик */
+@media (max-width: 480px) {
+  .price__export { justify-content: stretch; }
+  .export { width: 100%; }
+  .export__btn { flex: 1; text-align: center; }
 }

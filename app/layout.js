@@ -4,6 +4,7 @@ import { Manrope, Comfortaa } from 'next/font/google'
 import "./globals.css";
 import Header from './components/Header'
 import MainMenu from './components/MainMenu'
+import Footer from './components/Footer'
 
 const manrope = Manrope({
   subsets: ['latin', 'cyrillic'],
@@ -40,6 +41,7 @@ export default function RootLayout({ children }) {
         <Header />
         <MainMenu />
         {children}
+        <Footer />
       </body>
     </html>
   );

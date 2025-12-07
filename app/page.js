@@ -13,7 +13,7 @@ export default function Home() {
             <p className="hero__subtitle">От производителя. Быстрая отгрузка. Заказ по телефону</p>
             <div className="hero__actions">
               <Link href="/catalog" className="btn btn--primary">Смотреть каталог</Link>
-              <Link href="/price-list" className="btn btn--ghost">Прайс-лист</Link>
+              <Link href="/prices" className="btn btn--ghost">Прайс-лист</Link>
             </div>
           </div>
           <div className="hero__img-wrap">
@@ -25,7 +25,7 @@ export default function Home() {
       <section className="usp">
         <div className="usp__inner">
           <div className="usp__item"><strong>Собственное производство</strong><br/>стабильное качество</div>
-          <div className="usp__item"><strong>Заказ от 3000</strong><br/>гибкие условия</div>
+          <div className="usp__item"><strong>Заказ от 3000 ₽</strong><br/>гибкие условия</div>
           <div className="usp__item"><strong>Быстрая логистика</strong><br/>по РФ и СНГ</div>
         </div>
       </section>

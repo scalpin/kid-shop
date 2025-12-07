@@ -72,16 +72,11 @@ export default function Header() {
           {/* контакты */}
           
           <div className="header-contacts">
-            <a href="tel:+7973674519" className="contact-row">
+            <a href="tel:+79273674519" className="contact-row">
               <PhoneIcon className="contact-icon" />
               <span className="contact-phone">
                 <span className="font-semibold">+7 (927) 367-45-19</span>{' '}
               </span>
-            </a>
-
-            <a href="mailto:abroskin.06.77@mail.ru" className="contact-row">
-              <MailIcon className="contact-icon" />
-              <span className="contact-email">abroskin.06.77@mail.ru</span>
             </a>
           </div>
           
