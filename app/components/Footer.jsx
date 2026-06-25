@@ -10,14 +10,14 @@ export default function Footer() {
         <div className="footer-col footer-brand">
           <Link href="/" className="footer-logo" aria-label="На главную">
             <Image
-              src="/logo_blue.png"
+              src="/logo_kroha(cuted).png"
               alt="Счастливчик"
               width={160}
               height={36}
               className="footer-logo__img"
             />
           </Link>
-          <div className="footer-copy">© {year} Счастливчик</div>
+          <div className="footer-copy">© {year} Кроха Трикотажевна</div>
         </div>
 
         {/* Информация */}
@@ -34,9 +34,9 @@ export default function Footer() {
         {/* Контакты */}
         <div className="footer-col footer-contacts">
           <div className="footer-title">Контакты</div>
-          <a href="tel:+79273674519" className="footer-phone">+7&nbsp;(927)&nbsp;367-45-19</a>
-          <a href="tel:+79273674519" className="footer-phone">+7&nbsp;(927)&nbsp;287-69-26</a>
-          <a href="mailto:abroskin.06.77@mail.ru" className="footer-email">abroskin.06.77@mail.ru</a>
+          <a href="tel:++79272876926" className="footer-phone">+7&nbsp;(927)&nbsp;287-69-26</a>
+          <a href="tel:++79869432644" className="footer-phone">+7&nbsp;(986)&nbsp;943-26-44</a>
+          <a href="mailto:nataliya.abroskina@mail.ru" className="footer-email">nataliya.abroskina@mail.ru</a>
         </div>
 
         {/* Выгрузка товаров */}

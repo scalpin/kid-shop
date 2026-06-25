@@ -52,7 +52,7 @@ body {
 
 .header-logo { text-decoration: none; color: inherit; }
 .logo-wrap { display: flex; flex-direction: column; align-items: flex-start; }
-.logo-img  { height: 34px; width: auto; display: block; }
+.logo-img  { height: 30px; width: auto; display: block; padding-left: 2px;}
 
 .logo-subtitle {
   margin-top: 0px;
@@ -768,7 +768,7 @@ body {
 .footer-col { min-width: 0; }
 
 .footer-logo { display: inline-flex; align-items: center; text-decoration: none; color: inherit; }
-.footer-logo__img { height: 34px; width: auto; display: block; }
+.footer-logo__img { height: 20px; width: auto; display: block; }
 
 .footer-tagline { font-size: 13px; color: #6b7280; }
 

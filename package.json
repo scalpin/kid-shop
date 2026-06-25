@@ -5,11 +5,16 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
-    "start": "next start"
+    "start": "next start",
+    "db:up": "docker compose -f docker-compose.local.yml up -d db",
+    "db:down": "docker compose -f docker-compose.local.yml down",
+    "db:migrate": "node scripts/db-migrate.cjs",
+    "db:seed": "node scripts/db-seed.cjs",
+    "db:reset": "node scripts/db-reset.cjs"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.76.1",
     "next": "15.5.4",
+    "pg": "^8.22.0",
     "react": "19.1.0",
     "react-dom": "19.1.0"
   },

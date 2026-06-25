@@ -1,0 +1,22 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: kroha-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: kroha_trikotazhevna
+      POSTGRES_USER: kroha
+      POSTGRES_PASSWORD: kroha_dev_password
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      - "127.0.0.1:55432:5432"
+    volumes:
+      - kroha_pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U kroha -d kroha_trikotazhevna"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  kroha_pg_data:

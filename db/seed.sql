@@ -1,0 +1,75 @@
+INSERT INTO products (
+  name,
+  slug,
+  sku,
+  material,
+  sizes,
+  price,
+  description,
+  images,
+  certificates,
+  is_active,
+  created_at
+) VALUES
+(
+  'Боди ясельный с коротким рукавом',
+  'bodi-yaselnyy-korotkiy-rukav',
+  'КТ-001',
+  'Интерлок, 100% хлопок',
+  ARRAY['56', '62', '68', '74'],
+  320.00,
+  'Мягкий базовый боди для малышей. Тестовая карточка для проверки каталога.',
+  ARRAY['/DSC_0983(rolled).jpg', '/Collage.jpg'],
+  ARRAY[]::TEXT[],
+  TRUE,
+  NOW() - INTERVAL '3 days'
+),
+(
+  'Ползунки ясельные',
+  'polzunki-yaselnye',
+  'КТ-002',
+  'Кулирная гладь, 100% хлопок',
+  ARRAY['56', '62', '68'],
+  280.00,
+  'Лёгкие ползунки для повседневной носки. Тестовая позиция для прайс-листа.',
+  ARRAY['/Collage.jpg'],
+  ARRAY[]::TEXT[],
+  TRUE,
+  NOW() - INTERVAL '2 days'
+),
+(
+  'Комплект ясельный трикотажный',
+  'komplekt-yaselnyy-trikotazhnyy',
+  'КТ-003',
+  'Интерлок, 100% хлопок',
+  ARRAY['62', '68', '74', '80'],
+  690.00,
+  'Комплект из нескольких предметов для оптового каталога. Данные можно заменить на реальные.',
+  ARRAY['/DSC_0983(rolled).jpg'],
+  ARRAY[]::TEXT[],
+  TRUE,
+  NOW() - INTERVAL '1 day'
+),
+(
+  'Чепчик ясельный',
+  'chepchik-yaselnyy',
+  'КТ-004',
+  'Рибана, 100% хлопок',
+  ARRAY['36', '38', '40'],
+  120.00,
+  'Небольшая тестовая позиция, чтобы проверить сортировку и отображение низкой цены.',
+  ARRAY['/logo_blue(cuted).png'],
+  ARRAY[]::TEXT[],
+  TRUE,
+  NOW()
+)
+ON CONFLICT (slug) DO UPDATE SET
+  name = EXCLUDED.name,
+  sku = EXCLUDED.sku,
+  material = EXCLUDED.material,
+  sizes = EXCLUDED.sizes,
+  price = EXCLUDED.price,
+  description = EXCLUDED.description,
+  images = EXCLUDED.images,
+  certificates = EXCLUDED.certificates,
+  is_active = EXCLUDED.is_active;

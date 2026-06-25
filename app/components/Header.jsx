@@ -33,14 +33,14 @@ export default function Header() {
         <Link href="/" className="header-logo" aria-label="На главную">
           <div className="logo-wrap">
             <Image
-              src="/logo_blue(cuted).png"
+              src="/logo_kroha(cuted).png"
               alt="Счастливчик"
               width={290}
               height={64}
               priority
               className="logo-img"
             />
-            <div className="logo-subtitle">Производство ясельного трикотажа</div>
+            <div className="logo-subtitle">Производство детского трикотажа</div>
           </div>
         </Link>
 
@@ -75,7 +75,7 @@ export default function Header() {
             <a href="tel:+79273674519" className="contact-row">
               <PhoneIcon className="contact-icon" />
               <span className="contact-phone">
-                <span className="font-semibold">+7 (927) 367-45-19</span>{' '}
+                <span className="font-semibold">+7 (927) 287-69-26</span>{' '}
               </span>
             </a>
           </div>

@@ -1,16 +1,16 @@
 // app/prices/page.js
-import { supabase } from '@/lib/supabase'
+import { listPriceProducts } from '@/lib/products'
 
+export const runtime = 'nodejs'
 export const revalidate = 60
 export const metadata = { title: 'Прайс-лист' }
 
 export default async function PricesPage() {
-  const { data: products, error } = await supabase
-    .from('products')
-    .select('name, sku, material, sizes, price')
-    .order('name', { ascending: true })
+  let products = []
 
-  if (error) {
+  try {
+    products = await listPriceProducts()
+  } catch (error) {
     return <main className="price"><div className="price__inner"><pre className="price__error">{error.message}</pre></div></main>
   }
 
@@ -34,7 +34,7 @@ export default async function PricesPage() {
               </tr>
             </thead>
             <tbody>
-              {(products ?? []).map((p, i) => {
+              {products.map((p, i) => {
                 const sizes = Array.isArray(p.sizes) ? p.sizes.join(', ') : (p.sizes || '—')
                 const price = p.price != null ? `${fmt.format(Number(p.price))} ₽` : '—'
                 return (

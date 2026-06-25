@@ -1,22 +1,25 @@
 import { notFound } from "next/navigation"
 import Link from "next/link"
-import { supabase } from "@/lib/supabase"
+import { getProductBySlug, listProductSlugs } from "@/lib/products"
 
+export const runtime = "nodejs"
 export const revalidate = 60
 
 export async function generateStaticParams() {
-  const { data } = await supabase.from("products").select("slug")
-  return (data ?? []).map((p) => ({ slug: p.slug }))
+  try {
+    const products = await listProductSlugs()
+    return products.map((p) => ({ slug: p.slug }))
+  } catch (error) {
+    console.error("Failed to generate product params:", error)
+    return []
+  }
 }
 
 export default async function ProductPage({ params }) {
-  const { data: product, error } = await supabase
-    .from("products")
-    .select("*")
-    .eq("slug", params.slug)
-    .single()
+  const { slug } = await params
+  const product = await getProductBySlug(slug)
 
-  if (error || !product) return notFound()
+  if (!product) return notFound()
 
   // подготовим поля для вывода
   const fmt = new Intl.NumberFormat("ru-RU")
@@ -47,7 +50,7 @@ export default async function ProductPage({ params }) {
           {/* галерея */}
           <div className="product__gallery">
             <img
-              src={images[0] || "/placeholder.png"}
+              src={images[0] || "/logo_blue(cuted).png"}
               alt={product.name}
               className="product__image"
             />

@@ -14,24 +14,24 @@ export default function ContactsPage() {
 
             <div className="contacts__row">
               <div className="contacts__label">Телефон</div>
-              <a href="tel:+79273674519" className="contacts__phone">+7&nbsp;(927)&nbsp;367-45-19</a>
+              <a href="tel:+79272876926" className="contacts__phone">+7&nbsp;(927)&nbsp;287-69-26</a>
             </div>
 
             <div className="contacts__row">
               <div className="contacts__label">Почта</div>
-              <a href="mailto:abroskin.06.77@mail.ru" className="contacts__email">abroskin.06.77@mail.ru</a>
+              <a href="mailto:nataliya.abroskina@mail.ru" className="contacts__email">nataliya.abroskina@mail.ru</a>
             </div>
 
             <p className="contacts__note">Заказ оформляется по телефону</p>
 
             <div className="contacts__actions">
-              <a href="tel:+79273674519" className="btn btn--primary">Позвонить</a>
+              <a href="tel:+79272876926" className="btn btn--primary">Позвонить</a>
               <a href="/" className="btn btn--ghost">Как заказать</a>
             </div>
 
-            <p className="contacts__note">ИП АБРОСЬКИН</p>
-            <p className="contacts__note">ИНН 111111111111111</p>
-            <p className="contacts__note">ОГРН 111111111111111</p>
+            <p className="contacts__note">ИП СИВЕНКОВА К.А.</p>
+            <p className="contacts__note">ИНН 583715276582</p>
+            <p className="contacts__note">ОГРНИП 326580000023301</p>
 
           </div>
 
