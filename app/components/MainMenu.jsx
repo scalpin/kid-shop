@@ -10,7 +10,7 @@ export default function MainMenu() {
             { href: '/',            label: 'Главная' },
             { href: '/catalog',     label: 'Каталог' },
             { href: '/about',       label: 'О компании' },
-            { href: '/certificates',label: 'Сертификаты' },
+            { href: '/certificates',label: 'Документы' },
             { href: '/contacts',    label: 'Контакты' },
           ].map(item => (
             <li key={item.label} className="main-menu__item">
