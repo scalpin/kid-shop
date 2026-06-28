@@ -10,7 +10,15 @@
     "db:down": "docker compose -f docker-compose.local.yml down",
     "db:migrate": "node scripts/db-migrate.cjs",
     "db:seed": "node scripts/db-seed.cjs",
-    "db:reset": "node scripts/db-reset.cjs"
+    "db:reset": "node scripts/db-reset.cjs",
+    "db:clear:products": "node scripts/db-clear-products.cjs",
+    "db:clear:products:yes": "node scripts/db-clear-products.cjs --yes",
+    "db:export:products": "node scripts/db-export-products.cjs",
+    "db:import:products": "node scripts/db-import-products.cjs",
+    "db:import:products:dry-run": "node scripts/db-import-products.cjs --dry-run",
+    "db:import:products:replace": "node scripts/db-import-products.cjs --yes",
+    "prod:push-products": "node scripts/prod-push-products.cjs",
+    "prod:push-products:yes": "node scripts/prod-push-products.cjs --yes"
   },
   "dependencies": {
     "next": "15.5.4",

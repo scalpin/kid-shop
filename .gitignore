@@ -20,6 +20,11 @@
 # production
 /build
 
+# local catalog data exports and uploaded media
+/db/exports/
+/public/uploads/*
+!/public/uploads/.gitkeep
+
 # misc
 .DS_Store
 *.pem
