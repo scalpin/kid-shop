@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { useFavoriteSlugs } from './useFavorites'
 
 function HeartIcon(props) {
   return (
@@ -33,6 +34,7 @@ function MailIcon(props) {
 export default function Header() {
   const router = useRouter()
   const searchRef = useRef(null)
+  const favoriteSlugs = useFavoriteSlugs()
   const [query, setQuery] = useState('')
   const [suggestions, setSuggestions] = useState([])
   const [isSuggestionsOpen, setIsSuggestionsOpen] = useState(false)
@@ -198,10 +200,10 @@ export default function Header() {
           </form>
 
           {/* избранное */}
-          <a href="/favorites" className="fav" aria-label="Избранное">
+          <Link href="/favorites" className="fav" aria-label="Избранное">
             <HeartIcon className="fav__icon" />
-            <span className="fav__badge">0</span>
-          </a>
+            <span className="fav__badge">{favoriteSlugs.length}</span>
+          </Link>
 
           {/* контакты */}
           

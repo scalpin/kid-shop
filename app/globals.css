@@ -29,7 +29,7 @@ body {
 }
 
 
-#product-card:hover {
+.product-card:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.2s ease-in-out;
 }
@@ -314,6 +314,52 @@ body {
   border: 2px solid #fff;  /* чтобы бейдж отделялся от фона */
 }
 
+.favorite-button {
+  appearance: none;
+  border: 1px solid #e5e7eb;
+  background: rgba(255, 255, 255, 0.92);
+  color: #9ca3af;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  cursor: pointer;
+  padding: 0;
+  transition: color .15s ease, border-color .15s ease, background-color .15s ease, box-shadow .15s ease, transform .15s ease;
+}
+
+.favorite-button:hover,
+.favorite-button:focus-visible {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: #fff;
+  box-shadow: 0 10px 24px rgba(17, 24, 39, 0.10);
+}
+
+.favorite-button--active {
+  color: var(--accent);
+  border-color: rgba(118, 169, 252, 0.45);
+  background: #fff;
+}
+
+.favorite-button:active {
+  transform: scale(.96);
+}
+
+.favorite-button__icon {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.favorite-button--active .favorite-button__icon {
+  fill: currentColor;
+}
+
 /* адаптив: ужимаем поиск на узких экранах */
 @media (max-width: 920px) {
   .search { width: 220px; }
@@ -360,10 +406,26 @@ body {
 }
 
 .product-card { 
-  display: block; 
+  display: block;
+  position: relative;
   border: 1px solid #e5e7eb; 
   border-radius: 8px; padding: 12px; 
   text-decoration: none; 
+}
+
+.product-card__link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.favorite-button--catalog {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 32px;
+  height: 32px;
+  z-index: 2;
 }
 
 .product-card__img { 
@@ -390,6 +452,54 @@ body {
   border-radius: 12px;
   background: #fff;
   color: #6b7280;
+}
+
+.favorites-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 24px;
+}
+
+.favorites-page__head {
+  margin-bottom: 16px;
+}
+
+.favorites-page__note {
+  margin: -8px 0 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.favorites-empty {
+  padding: 34px;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  background: #fff;
+}
+
+.favorites-empty h1 {
+  margin: 0 0 10px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.favorites-empty p {
+  max-width: 560px;
+  margin: 0 0 18px;
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+.favorites-empty__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
 }
 
 
@@ -905,10 +1015,28 @@ body {
 }
 
 .product__info { }
+.product__title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
 .product__title {
   margin: 0 0 8px 0;
   font-size: 24px;
   font-weight: 700;
+}
+
+.favorite-button--product {
+  flex: 0 0 auto;
+  width: 42px;
+  height: 42px;
+}
+
+.favorite-button--product .favorite-button__icon {
+  width: 22px;
+  height: 22px;
 }
 .product__meta {
   margin: 12px 0 16px 0;

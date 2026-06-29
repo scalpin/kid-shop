@@ -1,5 +1,6 @@
 // app/catalog/page.js
 import Link from 'next/link'
+import FavoriteButton from '@/app/components/FavoriteButton'
 import { listCatalogProducts } from '@/lib/products'
 
 export const runtime = 'nodejs'
@@ -40,11 +41,14 @@ export default async function CatalogPage({ searchParams }) {
       {products.length > 0 ? (
         <div className="catalog-grid">
           {products.map(p => (
-            <Link key={p.slug} href={`/products/${p.slug}`} className="product-card" id="product-card">
-              <img src={p.images?.[0] || '/logo_blue(cuted).png'} alt={p.name} className="product-card__img" />
-              <div className="product-card__name">{p.name}</div>
-              {p.price != null && <div className="product-card__price">{Number(p.price)} ₽</div>}
-            </Link>
+            <div key={p.slug} className="product-card">
+              <Link href={`/products/${p.slug}`} className="product-card__link">
+                <img src={p.images?.[0] || '/logo_blue(cuted).png'} alt={p.name} className="product-card__img" />
+                <div className="product-card__name">{p.name}</div>
+                {p.price != null && <div className="product-card__price">{Number(p.price)} ₽</div>}
+              </Link>
+              <FavoriteButton slug={p.slug} name={p.name} variant="catalog" />
+            </div>
           ))}
         </div>
       ) : (

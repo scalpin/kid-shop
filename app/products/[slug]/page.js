@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation"
 import Link from "next/link"
+import FavoriteButton from "@/app/components/FavoriteButton"
 import { getProductBySlug, listProductSlugs } from "@/lib/products"
 
 export const runtime = "nodejs"
@@ -67,7 +68,10 @@ export default async function ProductPage({ params }) {
 
           {/* информация */}
           <div className="product__info">
-            <h1 className="product__title">{product.name}</h1>
+            <div className="product__title-row">
+              <h1 className="product__title">{product.name}</h1>
+              <FavoriteButton slug={product.slug} name={product.name} variant="product" />
+            </div>
 
             <dl className="product__meta">
               <div className="product__meta-row">
