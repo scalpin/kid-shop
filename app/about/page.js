@@ -9,7 +9,7 @@ export default function AboutPage() {
         {/* Блок 1: изображение слева, текст справа */}
         <section className="about-section">
           <div className="about-section__image">
-            <img src="/about/market.jpg" alt="Наше производство" />
+            <img src="/fabric.png" alt="Наше производство" />
           </div>
           <div className="about-section__content">
             <h2 className="about-section__title">На рынке с 2012 года</h2>
@@ -22,7 +22,7 @@ export default function AboutPage() {
         {/* Блок 2: изображение справа, текст слева */}
         <section className="about-section">
           <div className="about-section__image__reflected">
-            <img src="/about/penza.jpg" alt="Пенза" />
+            <img src="/storage.png" alt="Пенза" />
           </div>
           <div className="about-section__content__reflected">
             <h2 className="about-section__title__reflected">Производство в Пензе</h2>
@@ -35,7 +35,7 @@ export default function AboutPage() {
         {/* Блок 3: произвольный текстовый блок (по желанию можно убрать) */}
         <section className="about-section">
           <div className="about-section__image">
-            <img src="/about/quality.jpg" alt="Качество" />
+            <img src="/quality.jpg" alt="Качество" />
           </div>
           <div className="about-section__content">
             <h2 className="about-section__title">Высокое качество</h2>

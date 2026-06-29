@@ -42,9 +42,7 @@ export default function Footer() {
         <div className="footer-col">
             <div className="footer-title">Выгрузить товары</div>
             <ul className="footer-links">
-                <li><Link href="/">price-list.xml</Link></li>
-                <li><Link href="/">price-list.xls</Link></li>
-                <li><Link href="/">price-list.csv</Link></li>
+                <li><a href="/api/price-list.xlsx" download="price-list.xlsx">price-list.xlsx</a></li>
             </ul>
         </div>
 

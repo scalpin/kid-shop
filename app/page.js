@@ -17,7 +17,7 @@ export default function Home() {
             </div>
           </div>
           <div className="hero__img-wrap">
-            <img src="/DSC_0983(rolled).jpg" alt="" className="hero__img" />
+            <img src="/quality.jpg" alt="" className="hero__img" />
           </div>
         </div>
       </section>

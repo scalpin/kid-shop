@@ -54,21 +54,13 @@ export default async function PricesPage() {
         <div className="price__footer-note">Цены указаны в рублях. Актуальность обновляется автоматически</div>
 
         <div className="price__export">
-            <div className="export">
-                <button type="button" className="export__btn">Выгрузить</button>
-                <button
-                    type="button"
-                    className="export__toggle"
-                    aria-haspopup="menu"
-                    aria-expanded="false"
-                    aria-label="Выбрать формат"
-                />
-                <ul className="export__menu" role="menu">
-                    <li><a href="#" role="menuitem" data-format="csv">CSV</a></li>
-                    <li><a href="#" role="menuitem" data-format="xls">XLS</a></li>
-                    <li><a href="#" role="menuitem" data-format="xml">XML</a></li>
-                </ul>
-            </div>
+          <a
+            href="/api/price-list.xlsx"
+            download="price-list.xlsx"
+            className="export__btn"
+          >
+            Выгрузить
+          </a>
         </div>
       </div>
     </main>
