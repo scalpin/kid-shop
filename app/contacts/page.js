@@ -5,61 +5,59 @@ export default function ContactsPage() {
   return (
     <main className="contacts">
       <div className="contacts__inner">
-        <h1 className="contacts__h1">Контакты</h1>
+        <section className="contacts__hero">
+          <p className="contacts__eyebrow">Связь с производителем</p>
+          <h1 className="contacts__h1">Контакты</h1>
+          <p className="contacts__lead">
+            «Кроха Трикотажевна» — оптовый магазин-производитель детской
+            ясельной одежды. Производство находится в Пензе, в районе
+            Терновка. Работаем с оптовыми заказами и отправляем продукцию
+            транспортными компаниями по России и СНГ.
+          </p>
 
-        <section className="contacts__grid">
-          {/* левая колонка: основные контакты */}
-          <div className="contacts__card">
-            <h2 className="contacts__title">Заказ и вопросы</h2>
-
-            <div className="contacts__row">
-              <div className="contacts__label">Телефон</div>
-              <a href="tel:+79272876926" className="contacts__phone">+7&nbsp;(927)&nbsp;287-69-26</a>
+          <div className="contacts__details" aria-label="Контактная информация">
+            <div className="contacts__detail">
+              <span className="contacts__label">Телефон</span>
+              <a href="tel:+79272876926" className="contacts__phone">
+                +7&nbsp;(927)&nbsp;287-69-26
+                <p>Наталья</p>
+              </a>
             </div>
 
-            <div className="contacts__row">
-              <div className="contacts__label">Почта</div>
-              <a href="mailto:nataliya.abroskina@mail.ru" className="contacts__email">nataliya.abroskina@mail.ru</a>
+            <div className="contacts__detail">
+              <span className="contacts__label">Почта</span>
+              <a href="mailto:nataliya.abroskina@mail.ru" className="contacts__email">
+                nataliya.abroskina@mail.ru
+              </a>
             </div>
 
-            <p className="contacts__note">Заказ оформляется по телефону</p>
-
-            <div className="contacts__actions">
-              <a href="tel:+79272876926" className="btn btn--primary">Позвонить</a>
-              <a href="/" className="btn btn--ghost">Как заказать</a>
+            <div className="contacts__detail">
+              <span className="contacts__label">Реквизиты</span>
+              <p>ИП СИВЕНКОВА К.А.</p>
+              <p>ИНН 583715276582</p>
+              <p>ОГРНИП 326580000023301</p>
             </div>
-
-            <p className="contacts__note">ИП СИВЕНКОВА К.А.</p>
-            <p className="contacts__note">ИНН 583715276582</p>
-            <p className="contacts__note">ОГРНИП 326580000023301</p>
-
           </div>
+        </section>
 
-          {/* правая колонка: адрес/доставка */}
-          <div className="contacts__card">
-            <h2 className="contacts__title">Доставка и производство</h2>
-            <ul className="contacts__list">
-              <li>Производство в Пензе</li>
-              <li>Отправка по РФ и СНГ транспортными компаниями</li>
-              <li>Заказ от 3000 ₽</li>
-            </ul>
+        <section className="contacts__map" aria-label="Производство на карте">
+          <iframe
+            className="contacts__map-iframe"
+            title="Производство Кроха Трикотажевна на карте"
+            src="https://yandex.ru/map-widget/v1/?ll=45.022493%2C53.135469&z=16&l=map&pt=45.022493,53.135469,pm2rdm"
+            allowFullScreen
+          />
+        </section>
 
-            <div className="contacts__map">
-                <iframe
-                    className="contacts__map-iframe"
-                    title="Карта Яндекс"
-                    src="https://yandex.ru/map-widget/v1/?ll=45.022493%2C53.135469&z=16&l=map&pt=45.022493,53.135469,pm2rdm"
-                    allowFullScreen
-                />
-                <div className="contacts__map-meta">
-                    <a
-                    href="https://yandex.ru/maps/?pt=45.022493,53.135469&z=16&l=map"
-                    target="_blank" rel="noopener noreferrer"
-                    >Открыть на Яндекс.Картах</a>
-                </div>
-            </div>
-
-          </div>
+        <section className="contacts__order">
+          <h2 className="contacts__title">Как заказать</h2>
+          <p>
+            Выберите нужные модели в каталоге или прайс-листе, подготовьте
+            список позиций, размеров и цветов, а затем свяжитесь с нами по
+            телефону или почте. Мы уточним наличие, сроки пошива, условия
+            оплаты и доставки, после чего соберём заказ и передадим его в
+            удобную транспортную компанию.
+          </p>
         </section>
       </div>
     </main>

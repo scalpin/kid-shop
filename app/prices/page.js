@@ -20,7 +20,7 @@ export default async function PricesPage() {
     <main className="price">
       <div className="price__inner">
         <h1 className="price__h1">Прайс-лист</h1>
-        <div className="price__note">Заказ по телефону: <a href="tel:+79273674519" className="price__phone">+7 (927) 367-45-19</a></div>
+        <div className="price__note">Заказ по телефону: <a href="tel:+79272876926" className="price__phone">+7 (927) 287-69-26</a></div>
 
         <div className="price__tablewrap">
           <table className="price-table">

@@ -1,6 +1,10 @@
+'use client'
+
 // components/Header.jsx
 import Link from 'next/link'
 import Image from 'next/image'
+import { useEffect, useRef, useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 function HeartIcon(props) {
   return (
@@ -27,6 +31,93 @@ function MailIcon(props) {
 }
 
 export default function Header() {
+  const router = useRouter()
+  const searchRef = useRef(null)
+  const [query, setQuery] = useState('')
+  const [suggestions, setSuggestions] = useState([])
+  const [isSuggestionsOpen, setIsSuggestionsOpen] = useState(false)
+  const [isLoadingSuggestions, setIsLoadingSuggestions] = useState(false)
+
+  useEffect(() => {
+    const currentUrl = new URL(window.location.href)
+
+    if (currentUrl.pathname === '/catalog') {
+      setQuery(currentUrl.searchParams.get('q') || '')
+    }
+  }, [])
+
+  useEffect(() => {
+    const searchQuery = query.trim()
+
+    if (!searchQuery) {
+      setSuggestions([])
+      setIsLoadingSuggestions(false)
+      return
+    }
+
+    const controller = new AbortController()
+    const timeoutId = window.setTimeout(async () => {
+      setIsLoadingSuggestions(true)
+
+      try {
+        const response = await fetch(`/api/search-products?q=${encodeURIComponent(searchQuery)}`, {
+          signal: controller.signal,
+        })
+
+        if (!response.ok) {
+          throw new Error('Search request failed')
+        }
+
+        const data = await response.json()
+        setSuggestions(Array.isArray(data.items) ? data.items : [])
+        setIsSuggestionsOpen(true)
+      } catch (error) {
+        if (error.name !== 'AbortError') {
+          setSuggestions([])
+        }
+      } finally {
+        if (!controller.signal.aborted) {
+          setIsLoadingSuggestions(false)
+        }
+      }
+    }, 180)
+
+    return () => {
+      controller.abort()
+      window.clearTimeout(timeoutId)
+    }
+  }, [query])
+
+  useEffect(() => {
+    function handleDocumentMouseDown(event) {
+      if (!searchRef.current?.contains(event.target)) {
+        setIsSuggestionsOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleDocumentMouseDown)
+
+    return () => {
+      document.removeEventListener('mousedown', handleDocumentMouseDown)
+    }
+  }, [])
+
+  function handleSearchSubmit(event) {
+    event.preventDefault()
+
+    const searchQuery = query.trim()
+    const href = searchQuery ? `/catalog?q=${encodeURIComponent(searchQuery)}` : '/catalog'
+
+    setIsSuggestionsOpen(false)
+    router.push(href)
+  }
+
+  function handleSearchKeyDown(event) {
+    if (event.key === 'Escape') {
+      setIsSuggestionsOpen(false)
+    }
+  }
+
   return (
     <header className="site-header">
       <div className="header-inner">
@@ -34,7 +125,7 @@ export default function Header() {
           <div className="logo-wrap">
             <Image
               src="/logo_kroha(cuted).png"
-              alt="Счастливчик"
+              alt="Кроха трикотажевна"
               width={290}
               height={64}
               priority
@@ -47,20 +138,63 @@ export default function Header() {
         {/* правая часть: поиск + избранное + контакты */}
         <div className="header-right">
           {/* поиск */}
-          <form className="search" role="search" action="/search" method="GET">
+          <form
+            className="search"
+            role="search"
+            onSubmit={handleSearchSubmit}
+            ref={searchRef}
+          >
             <input
               className="search__input"
               type="text"
               name="q"
+              value={query}
+              onChange={(event) => {
+                setQuery(event.target.value)
+                setIsSuggestionsOpen(Boolean(event.target.value.trim()))
+              }}
+              onFocus={() => {
+                if (query.trim()) {
+                  setIsSuggestionsOpen(true)
+                }
+              }}
+              onKeyDown={handleSearchKeyDown}
               placeholder="Найти товары"
               aria-label="Поиск по каталогу"
+              aria-expanded={isSuggestionsOpen}
+              aria-controls="search-suggestions"
+              autoComplete="off"
             />
             <button className="search__btn" type="submit" aria-label="Искать">
-              {/* простая лупа */}
               <svg className="search__icon" viewBox="0 0 24 24" aria-hidden="true">
-                <path fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.471 6.471 0 001.57-4.23C15.99 6.01 13.48 3.5 10.5 3.5S5.01 6.01 5.01 9 7.52 14.5 10.5 14.5c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l4.5 4.49L20 18.5 15.5 14zm-5 0C8.01 14 6 11.99 6 9.5S8.01 5 10.5 5 15 7.01 15 9.5 12.99 14 10.5 14z"/>
+                <circle cx="10.5" cy="10.5" r="6.5" />
+                <path d="M15.5 15.5 21 21" />
               </svg>
             </button>
+
+            {isSuggestionsOpen && (
+              <div className="search__suggestions" id="search-suggestions">
+                {suggestions.map((product) => (
+                  <Link
+                    key={product.slug}
+                    href={`/products/${product.slug}`}
+                    className="search__suggestion"
+                    onClick={() => setIsSuggestionsOpen(false)}
+                  >
+                    <img
+                      src={product.image}
+                      alt=""
+                      className="search__suggestion-img"
+                    />
+                    <span className="search__suggestion-name">{product.name}</span>
+                  </Link>
+                ))}
+
+                {!isLoadingSuggestions && suggestions.length === 0 && query.trim() && (
+                  <div className="search__suggestion-empty">Ничего не найдено</div>
+                )}
+              </div>
+            )}
           </form>
 
           {/* избранное */}

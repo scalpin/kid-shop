@@ -1,7 +1,7 @@
 // app/page.js
 import Link from 'next/link'
 
-export const metadata = { title: 'Счастливчик — детская одежда оптом' }
+export const metadata = { title: 'Кроха трикотажевна — детская одежда оптом' }
 
 export default function Home() {
   return (

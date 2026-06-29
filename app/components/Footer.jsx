@@ -11,7 +11,7 @@ export default function Footer() {
           <Link href="/" className="footer-logo" aria-label="На главную">
             <Image
               src="/logo_kroha(cuted).png"
-              alt="Счастливчик"
+              alt="Кроха трикотажевна"
               width={160}
               height={36}
               className="footer-logo__img"
@@ -26,7 +26,6 @@ export default function Footer() {
           <ul className="footer-links">
             <li><Link href="/about">О компании</Link></li>
             <li><Link href="/certificates">Сертификаты</Link></li>
-            <li><Link href="/contacts">Как заказать</Link></li>
             <li><Link href="/prices">Прайс-лист</Link></li>
           </ul>
         </div>
