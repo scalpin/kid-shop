@@ -10,7 +10,11 @@ export default function Home() {
         <div className="hero__inner">
           <div className="hero__text">
             <h1 className="hero__title">Детская одежда оптом</h1>
-            <p className="hero__subtitle">От производителя. Быстрая отгрузка. Заказ по телефону</p>
+            <p className="hero__subtitle">
+              <span>От производителя.</span>
+              <span>Быстрая отгрузка.</span>
+              <span>Заказ по телефону</span>
+            </p>
             <div className="hero__actions">
               <Link href="/catalog" className="btn btn--primary">Смотреть каталог</Link>
               <Link href="/prices" className="btn btn--ghost">Прайс-лист</Link>

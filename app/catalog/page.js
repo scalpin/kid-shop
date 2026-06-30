@@ -32,6 +32,10 @@ export default async function CatalogPage({ searchParams }) {
   return (
     <main className="catalog-page">
       <h1 className="catalog-title">Каталог</h1>
+      <div className="catalog-toolbar">
+        <button type="button" className="catalog-filter-button">Выбор категории</button>
+      </div>
+
       {search && (
         <p className="catalog-search-note">
           Результаты поиска по запросу «{search}»: {products.length}

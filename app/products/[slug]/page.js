@@ -108,7 +108,7 @@ export default async function ProductPage({ params }) {
 
             {Array.isArray(product.certificates) && product.certificates.length > 0 && (
               <div className="product__certs">
-                <h3>Сертификаты</h3>
+                <h3>Документы</h3>
                 <ul>
                   {product.certificates.slice(0, 5).map((url, idx) => (
                     <li key={idx}><a href={url} target="_blank" rel="noreferrer">Скачать {idx + 1}</a></li>
