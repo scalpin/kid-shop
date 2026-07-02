@@ -7,12 +7,13 @@ import {
   parseProductFormData,
   updateProduct,
 } from '@/lib/admin-products'
+import { getAdminRedirectUrl } from '@/lib/admin-redirect'
 import { saveProductImages } from '@/lib/admin-uploads'
 
 export const runtime = 'nodejs'
 
 function redirectToLogin(request) {
-  return NextResponse.redirect(new URL('/admin/login', request.url), { status: 303 })
+  return NextResponse.redirect(getAdminRedirectUrl(request, '/admin/login'), { status: 303 })
 }
 
 export async function POST(request, { params }) {
@@ -24,7 +25,7 @@ export async function POST(request, { params }) {
   const existingProduct = await getAdminProductById(id)
 
   if (!existingProduct) {
-    return NextResponse.redirect(new URL('/admin/products', request.url), { status: 303 })
+    return NextResponse.redirect(getAdminRedirectUrl(request, '/admin/products'), { status: 303 })
   }
 
   try {
@@ -41,11 +42,11 @@ export async function POST(request, { params }) {
     revalidatePath(`/products/${existingProduct.slug}`)
     revalidatePath(`/products/${product.slug}`)
 
-    return NextResponse.redirect(new URL(`/admin/products/${product.id}?saved=1`, request.url), {
+    return NextResponse.redirect(getAdminRedirectUrl(request, `/admin/products/${product.id}?saved=1`), {
       status: 303,
     })
   } catch (error) {
-    const url = new URL(`/admin/products/${id}`, request.url)
+    const url = getAdminRedirectUrl(request, `/admin/products/${id}`)
     url.searchParams.set('error', error.message || 'Не удалось сохранить товар')
     return NextResponse.redirect(url, { status: 303 })
   }

@@ -2,12 +2,13 @@ import { NextResponse } from 'next/server'
 import { revalidatePath } from 'next/cache'
 import { isAdminAuthenticated } from '@/lib/admin-auth'
 import { setProductActive } from '@/lib/admin-products'
+import { getAdminRedirectUrl } from '@/lib/admin-redirect'
 
 export const runtime = 'nodejs'
 
 export async function POST(request, { params }) {
   if (!(await isAdminAuthenticated())) {
-    return NextResponse.redirect(new URL('/admin/login', request.url), { status: 303 })
+    return NextResponse.redirect(getAdminRedirectUrl(request, '/admin/login'), { status: 303 })
   }
 
   const { id } = await params
@@ -20,7 +21,7 @@ export async function POST(request, { params }) {
     revalidatePath(`/products/${product.slug}`)
   }
 
-  return NextResponse.redirect(new URL('/admin/products?saved=1', request.url), {
+  return NextResponse.redirect(getAdminRedirectUrl(request, '/admin/products?saved=1'), {
     status: 303,
   })
 }
