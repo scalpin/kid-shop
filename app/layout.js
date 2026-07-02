@@ -2,9 +2,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import { Manrope, Comfortaa } from 'next/font/google'
 import "./globals.css";
-import Header from './components/Header'
-import MainMenu from './components/MainMenu'
-import Footer from './components/Footer'
+import SiteChrome from './components/SiteChrome'
 
 const manrope = Manrope({
   subsets: ['latin', 'cyrillic'],
@@ -38,10 +36,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
 
       <body className={`${manrope.variable} ${comfortaa.variable} antialiased`}>
-        <Header />
-        <MainMenu />
-        {children}
-        <Footer />
+        <SiteChrome>{children}</SiteChrome>
       </body>
     </html>
   );

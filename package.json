@@ -18,7 +18,8 @@
     "db:import:products:dry-run": "node scripts/db-import-products.cjs --dry-run",
     "db:import:products:replace": "node scripts/db-import-products.cjs --yes",
     "prod:push-products": "node scripts/prod-push-products.cjs",
-    "prod:push-products:yes": "node scripts/prod-push-products.cjs --yes"
+    "prod:push-products:yes": "node scripts/prod-push-products.cjs --yes",
+    "admin:hash-password": "node scripts/admin-password-hash.cjs"
   },
   "dependencies": {
     "next": "15.5.4",

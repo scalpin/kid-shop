@@ -11,8 +11,8 @@ export default function Home() {
           <div className="hero__text">
             <h1 className="hero__title">Детская одежда оптом</h1>
             <p className="hero__subtitle">
-              <span>От производителя.</span>
-              <span>Быстрая отгрузка.</span>
+              <span>От производителя. </span>
+              <span>Быстрая отгрузка. </span>
               <span>Заказ по телефону</span>
             </p>
             <div className="hero__actions">
@@ -21,7 +21,7 @@ export default function Home() {
             </div>
           </div>
           <div className="hero__img-wrap">
-            <img src="/quality.jpg" alt="" className="hero__img" />
+            <img src="/hero_img2.png" alt="" className="hero__img" />
           </div>
         </div>
       </section>
