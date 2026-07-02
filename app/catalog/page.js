@@ -18,6 +18,10 @@ function getCatalogSearch(searchParams) {
   return typeof value === 'string' ? value.trim() : ''
 }
 
+function formatCatalogSizes(sizes) {
+  return Array.isArray(sizes) ? sizes.join(', ') : ''
+}
+
 export default async function CatalogPage({ searchParams }) {
   let products = []
   const resolvedSearchParams = await searchParams
@@ -32,9 +36,6 @@ export default async function CatalogPage({ searchParams }) {
   return (
     <main className="catalog-page">
       <h1 className="catalog-title">Каталог</h1>
-      <div className="catalog-toolbar">
-        <button type="button" className="catalog-filter-button">Выбор категории</button>
-      </div>
 
       {search && (
         <p className="catalog-search-note">
@@ -44,16 +45,26 @@ export default async function CatalogPage({ searchParams }) {
 
       {products.length > 0 ? (
         <div className="catalog-grid">
-          {products.map(p => (
-            <div key={p.slug} className="product-card">
-              <Link href={`/products/${p.slug}`} className="product-card__link">
-                <img src={p.images?.[0] || '/logo_blue(cuted).png'} alt={p.name} className="product-card__img" />
-                <div className="product-card__name">{p.name}</div>
-                {p.price != null && <div className="product-card__price">{Number(p.price)} ₽</div>}
-              </Link>
-              <FavoriteButton slug={p.slug} name={p.name} variant="catalog" />
-            </div>
-          ))}
+          {products.map((p) => {
+            const sizes = formatCatalogSizes(p.sizes)
+
+            return (
+              <div key={p.slug} className="product-card">
+                <Link href={`/products/${p.slug}`} className="product-card__link">
+                  <img src={p.images?.[0] || '/logo_blue(cuted).png'} alt={p.name} className="product-card__img" />
+                  <div className="product-card__details">
+                    <div className="product-card__name">{p.name}</div>
+                    {sizes && <div className="product-card__sizes">{sizes}</div>}
+                    <div className="product-card__footer">
+                      {p.price != null && <div className="product-card__price">{Number(p.price)} ₽</div>}
+                      {p.sku && <div className="product-card__sku">{p.sku}</div>}
+                    </div>
+                  </div>
+                </Link>
+                <FavoriteButton slug={p.slug} name={p.name} variant="catalog" />
+              </div>
+            )
+          })}
         </div>
       ) : (
         <div className="catalog-empty">

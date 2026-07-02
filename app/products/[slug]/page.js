@@ -102,8 +102,7 @@ export default async function ProductPage({ params }) {
             <div className="product__cta">
               Заказ по телефону:
               {" "}
-              <a href="tel:+79273674519" className="product__cta-link">+7 927 367-45-19</a><br></br>
-              <a href="tel:+79272876926" className="product__cta-link2">+7 927 287-69-26</a>
+              <a href="tel:+79272876926" className="product__cta-link">+7 927 287-69-26</a>
             </div>
 
             {Array.isArray(product.certificates) && product.certificates.length > 0 && (
