@@ -8,7 +8,7 @@ export async function POST(request) {
   const formData = await request.formData()
   const password = String(formData.get('password') || '')
 
-  if (!process.env.ADMIN_PASSWORD_HASH && process.env.NODE_ENV === 'production') {
+  if (!process.env['ADMIN_PASSWORD_HASH'] && process.env.NODE_ENV === 'production') {
     return NextResponse.redirect(getAdminRedirectUrl(request, '/admin/login?error=not-configured'), {
       status: 303,
     })
