@@ -92,6 +92,8 @@ export default async function ProductPage({ params }) {
               </div>
             </dl>
 
+            <p>Расцветки в ассортименте</p>  
+
             {product.description && (
               <div className="product__desc">
                 <h2>Описание</h2>
