@@ -57,6 +57,7 @@ export const metadata = {
   publisher: SITE_NAME,
   verification: {
     yandex: '7624b7ab2713d0ae',
+    google: 'aA0wak_nxPdHNSaK8GI5iS6VZN8WWj9wF3EgOluzH1k',
   },
   alternates: {
     canonical: '/',
