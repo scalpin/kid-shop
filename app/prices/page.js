@@ -3,7 +3,14 @@ import { listPriceProducts } from '@/lib/products'
 
 export const runtime = 'nodejs'
 export const revalidate = 60
-export const metadata = { title: 'Прайс-лист' }
+export const metadata = {
+  title: 'Прайс-лист',
+  description:
+    'Актуальный прайс-лист на детскую ясельную одежду оптом от производителя Кроха Трикотажевна. Артикулы, размеры, материалы и цены.',
+  alternates: {
+    canonical: '/prices',
+  },
+}
 
 export default async function PricesPage() {
   let products = []

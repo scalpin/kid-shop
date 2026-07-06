@@ -1,5 +1,12 @@
 // app/contacts/page.js
-export const metadata = { title: 'Контакты' }
+export const metadata = {
+  title: 'Контакты',
+  description:
+    'Контакты производителя детской одежды Кроха Трикотажевна: телефон, почта, реквизиты и адрес производства в Пензе.',
+  alternates: {
+    canonical: '/contacts',
+  },
+}
 
 export default function ContactsPage() {
   return (

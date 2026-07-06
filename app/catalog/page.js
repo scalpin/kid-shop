@@ -6,7 +6,33 @@ import { listCatalogProducts } from '@/lib/products'
 export const runtime = 'nodejs'
 export const revalidate = 60
 
-export const metadata = { title: 'Каталог' }
+export async function generateMetadata({ searchParams }) {
+  const resolvedSearchParams = await searchParams
+  const search = getCatalogSearch(resolvedSearchParams)
+
+  if (search) {
+    return {
+      title: `Поиск по каталогу: ${search}`,
+      description: `Результаты поиска по каталогу детской одежды оптом: ${search}.`,
+      alternates: {
+        canonical: '/catalog',
+      },
+      robots: {
+        index: false,
+        follow: true,
+      },
+    }
+  }
+
+  return {
+    title: 'Каталог детской одежды оптом',
+    description:
+      'Каталог детской ясельной одежды оптом от производителя Кроха Трикотажевна: боди, комбинезоны, штанишки, кофточки и другие модели.',
+    alternates: {
+      canonical: '/catalog',
+    },
+  }
+}
 
 function getCatalogSearch(searchParams) {
   const value = searchParams?.q

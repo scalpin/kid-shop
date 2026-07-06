@@ -1,5 +1,12 @@
 // app/about/page.js
-export const metadata = { title: 'О компании' }
+export const metadata = {
+  title: 'О компании',
+  description:
+    'Кроха Трикотажевна — производство детской ясельной одежды в Пензе. Работаем с 2012 года, контролируем качество и выпускаем детский трикотаж оптом.',
+  alternates: {
+    canonical: '/about',
+  },
+}
 
 export default function AboutPage() {
   return (

@@ -1,4 +1,11 @@
-export const metadata = { title: 'Документы' }
+export const metadata = {
+  title: 'Документы',
+  description:
+    'Документы и сертификаты производителя детской одежды Кроха Трикотажевна.',
+  alternates: {
+    canonical: '/certificates',
+  },
+}
 
 const mainDocuments = [
   'Свидетельство',
