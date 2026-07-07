@@ -7,6 +7,8 @@ import {
   SITE_ADDRESS,
   SITE_DESCRIPTION,
   SITE_EMAIL,
+  SITE_LATITUDE,
+  SITE_LONGITUDE,
   SITE_NAME,
   SITE_PHONE,
   SITE_URL,
@@ -59,6 +61,15 @@ export const metadata = {
     yandex: '7624b7ab2713d0ae',
     google: 'aA0wak_nxPdHNSaK8GI5iS6VZN8WWj9wF3EgOluzH1k',
   },
+  icons: {
+    icon: [
+      {
+        url: '/favicon.ico',
+        type: 'image/x-icon',
+      },
+    ],
+    shortcut: ['/favicon.ico'],
+  },
   alternates: {
     canonical: '/',
   },
@@ -89,21 +100,33 @@ export const metadata = {
       'max-video-preview': -1,
     },
   },
+  other: {
+    'geo.region': 'RU-PNZ',
+    'geo.placename': 'Пенза',
+    'geo.position': `${SITE_LATITUDE};${SITE_LONGITUDE}`,
+    ICBM: `${SITE_LATITUDE}, ${SITE_LONGITUDE}`,
+  },
 };
 
 const organizationJsonLd = {
   '@context': 'https://schema.org',
-  '@type': 'Organization',
+  '@type': ['Organization', 'LocalBusiness'],
   name: SITE_NAME,
   url: SITE_URL,
   logo: absoluteUrl('/logo_kroha(cuted).png'),
   telephone: SITE_PHONE,
   email: SITE_EMAIL,
+  areaServed: ['Россия', 'СНГ'],
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'Пенза',
     streetAddress: SITE_ADDRESS.replace('Пенза, ', ''),
     addressCountry: 'RU',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: SITE_LATITUDE,
+    longitude: SITE_LONGITUDE,
   },
 }
 
