@@ -22,7 +22,7 @@
     "admin:hash-password": "node scripts/admin-password-hash.cjs"
   },
   "dependencies": {
-    "next": "15.5.4",
+    "next": "15.5.20",
     "pg": "^8.22.0",
     "react": "19.1.0",
     "react-dom": "19.1.0"
